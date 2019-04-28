@@ -1,4 +1,4 @@
 django
-django-debug-toolbar
 django-bootstrap4
+django-debug-toolbar
 django-environ

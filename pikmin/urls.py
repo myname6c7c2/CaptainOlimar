@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views.pikmin_list.pikmin_list_view import index
+from .views.pikmins.pikmins_view import index
 
 
-app_name = 'pikmin'
+app_name = 'pikmins'
 
 urlpatterns = [
-    path('list', index, name='index'),
+    path('', index, name='index'),
 ]

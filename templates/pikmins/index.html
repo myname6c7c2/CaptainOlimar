@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ピクミン一覧{% endblock title%}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'pikmin.css' %}">
+{% endblock header %}
+
+{% block breadcrumb %}ピクミン一覧{% endblock breadcrumb %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-8">
+        {% include 'share/paginator.html' %}
+    </div>
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-primary float-sm-right">登録</button>
+        <button type="button" class="btn btn-danger float-sm-right">削除</button>
+    </div>
+</div>
+<table class="table table-borderd table-hover table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th class="check"><input type="checkbox" name="checkbox-all" id="checkbox-all"></th>
+            <th>氏名</th>
+            <th>氏名カナ</th>
+            <th>年齢</th>
+            <th>性別</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+        </tr>
+    </thead>
+    {% for pikmin in pikmins %}
+    <tbody>
+        <tr>
+            <td class="check"><input type="checkbox" name="checkbox-row" id="checkbox-row"></td>
+            <td>{{ pikmin.first_name }} {{ pikmin.last_name }}</td>
+            <td>{{ pikmin.first_name_kana|default:'-' }} {{ pikmin.last_name_kana|default:'-' }}</td>
+            <td>{{ pikmin.calculate_age }} 歳</td>
+            <td>{{ pikmin.get_sex_display }}</td>
+            <td>{{ pikmin.created_at }}</td>
+            <td>{{ pikmin.updated_at }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock content %}

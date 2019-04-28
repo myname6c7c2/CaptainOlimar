@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models.pikmins.pikmin import Pikmin
+
+
+admin.site.register(Pikmin)
