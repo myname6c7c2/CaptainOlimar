@@ -4,14 +4,10 @@ from django.db import models
 from django.db.models import Q
 from django.utils import timezone
 
+from pikmin.lib.choices import SEX
+
 
 class Pikmin(models.Model):
-
-    SEX = (
-        (0, ''),
-        (1, '男'),
-        (2, '女'),
-    )
 
     first_name = models.CharField('名前', max_length=20)
     last_name = models.CharField('苗字', max_length=20)

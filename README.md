@@ -1,3 +1,3 @@
-# pikmin
+# CaptainOlimar
 
-ピクミンを管理する。
+ピクミン管理
