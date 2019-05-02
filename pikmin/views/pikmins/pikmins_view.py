@@ -1,8 +1,10 @@
 from django.db.models import Q
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView
 
-from pikmin.forms.pikmins.pikmin_search_form import PikminSearchForm
+from pikmin.forms.pikmins.pikmin_forms import (PikminSearchForm, PikminForm)
 from pikmin.models.pikmins.pikmin import Pikmin
 
 
@@ -62,4 +64,21 @@ class IndexView(ListView):
         
         return pikmins.order_by('-pk')
 
+
+class PikminCreateView(CreateView):
+    model = Pikmin
+    form_class = PikminForm
+    template_name = 'pikmins/edit.html'
+    success_url = reverse_lazy('pikmins:index')
+
+
+class PikminUpdateView(UpdateView):
+    model = Pikmin
+    form_class = PikminForm
+    template_name = 'pikmins/edit.html'
+    success_url = reverse_lazy('pikmins:index')
+
+
 index = IndexView.as_view()
+create = PikminCreateView.as_view()
+update = PikminUpdateView.as_view()

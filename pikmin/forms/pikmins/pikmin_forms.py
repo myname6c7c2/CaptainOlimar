@@ -40,3 +40,23 @@ class PikminSearchForm(forms.Form):
 
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+
+
+class PikminForm(forms.ModelForm):
+
+    class Meta:
+        model = Pikmin
+        fields = (
+            'last_name',
+            'first_name',
+            'last_name_kana',
+            'first_name_kana',
+            'birth_date',
+            'sex',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(PikminForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
