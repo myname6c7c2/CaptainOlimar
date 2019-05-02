@@ -1,0 +1,25 @@
+<form method="post">
+    <div class="form-row">
+        {% csrf_token %}
+        {% if search_form.errors %}
+            {{ search_form.non_field_errors }}
+        {% endif %}
+        {% for field in search_form %}
+        <div class="form-group row col-md-4">
+            <div class="col-form-label col-md-4 text-center">
+                <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+            </div>
+            <div class="col-md-8">
+                {{ field }}
+                <div class="text-danger">
+                    {{ field.errors }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="form-group col-md-2 ml-auto">
+            <input class="btn btn-secondary" type="reset" id="reset" name="reset" value="クリア">
+            <input class="btn btn-info" type="submit" id="search" name="search" value="検索">
+        </div>
+    </div>
+</form>
