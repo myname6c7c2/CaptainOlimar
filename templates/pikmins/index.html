@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{% static 'pikmin.css' %}">
 {% endblock header %}
 
-{% block breadcrumb %}ピクミン一覧{% endblock breadcrumb %}
+{% block breadcrumb %}
+<li class="breadcrumb-item active">ピクミン一覧</li>
+{% endblock breadcrumb %}
 
 {% block content %}
 
@@ -19,7 +21,7 @@
     </div>
     {% if user.is_authenticated %}
     <div class="col-sm-2 ml-auto">
-        <button type="button" class="btn btn-info">登録</button>
+        <a class="btn btn-primary" role="button" href="{% url 'pikmins:create' %}">新規登録</a>
         <button type="button" class="btn btn-danger">削除</button>
     </div>
     {% endif %}
@@ -27,7 +29,6 @@
 <table class="table table-borderd table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th class="check"><input type="checkbox" name="checkbox-all" id="checkbox-all"></th>
             <th>氏名</th>
             <th>氏名カナ</th>
             <th>年齢</th>
@@ -38,8 +39,7 @@
     </thead>
     {% for pikmin in pikmins %}
     <tbody>
-        <tr>
-            <td class="check"><input type="checkbox" name="checkbox-row" id="checkbox-row"></td>
+        <tr class="clickable-row" data-href="{% url 'pikmins:update' pikmin.pk %}">
             <td>{{ pikmin.last_name }} {{ pikmin.first_name }}</td>
             <td>{{ pikmin.last_name_kana|default:'-' }} {{ pikmin.first_name_kana|default:'-' }}</td>
             <td>{{ pikmin.calculate_age }} 歳</td>
@@ -51,3 +51,6 @@
     {% endfor %}
 </table>
 {% endblock content %}
+{% block script %}
+    <script src="{% static 'js/pikmins/index.js' %}"></script>
+{% endblock script %}
