@@ -30,12 +30,13 @@ class PikminSearchForm(forms.Form):
         required=False,
     )
 
-    age = forms.IntegerField(
-        label='年齢',
-        required=False,
-    )
-
     sex = forms.ChoiceField(
         label='性別',
         choices=SEX,
     )
+
+    def __init__(self, *args, **kwargs):
+        super(PikminSearchForm, self).__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
