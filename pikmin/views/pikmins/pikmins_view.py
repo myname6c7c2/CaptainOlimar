@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -65,14 +66,14 @@ class IndexView(ListView):
         return pikmins.order_by('-pk')
 
 
-class PikminCreateView(CreateView):
+class PikminCreateView(LoginRequiredMixin, CreateView):
     model = Pikmin
     form_class = PikminForm
     template_name = 'pikmins/edit.html'
     success_url = reverse_lazy('pikmins:index')
 
 
-class PikminUpdateView(UpdateView):
+class PikminUpdateView(LoginRequiredMixin, UpdateView):
     model = Pikmin
     form_class = PikminForm
     template_name = 'pikmins/edit.html'
