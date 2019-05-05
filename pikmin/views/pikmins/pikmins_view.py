@@ -31,23 +31,20 @@ class IndexView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        form_data = self.request.session['form_data']
-
-        if form_data:
-            search_form = PikminSearchForm(form_data)
+        if 'form_data' in self.request.session:
+            form_data = self.request.session['form_data']
+            context['search_form'] = PikminSearchForm(form_data)
         else:
-            search_form = PikminSearchForm()
-
-        context['search_form'] = search_form
+            context['search_form'] = PikminSearchForm()
 
         return context
 
     def get_queryset(self):
-        form_data = self.request.session['form_data']
 
         pikmins = Pikmin.objects.all()
 
-        if form_data:
+        if 'form_data' in self.request.session:
+            form_data = self.request.session['form_data']
             condition = Q()
 
             if form_data['first_name']:
