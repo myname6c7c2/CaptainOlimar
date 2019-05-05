@@ -39,11 +39,7 @@
     </thead>
     {% for pikmin in pikmins %}
     <tbody>
-        {% if user.is_authenticated %}
-            <tr class="clickable-row" data-href="{% url 'pikmins:update' pikmin.pk %}">
-        {% else %}
-            <tr>
-        {% endif %}
+        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:update' pikmin.pk %}" {% endif %}>
             <td>{{ pikmin.last_name }} {{ pikmin.first_name }}</td>
             <td>{{ pikmin.last_name_kana|default:'-' }} {{ pikmin.first_name_kana|default:'-' }}</td>
             <td>{{ pikmin.calculate_age }} 歳</td>
