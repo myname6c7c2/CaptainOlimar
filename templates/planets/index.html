@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}惑星一覧{% endblock title%}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'pikmin.css' %}">
+{% endblock header %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">惑星一覧</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+{% include './search_form.html' %}
+
+<div class="row">
+    <div class="col-sm-8">
+        {% include 'share/paginator.html' %}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-sm-2 ml-auto">
+        <a class="btn btn-primary" role="button" href="{% url 'pikmins:planets_create' %}">新規登録</a>
+        <button type="button" class="btn btn-danger">削除</button>
+    </div>
+    {% endif %}
+</div>
+<table class="table table-borderd table-hover table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th>惑星名</th>
+            <th>惑星名カナ</th>
+            <th>作成日時</th>
+            <th>更新日時</th>
+        </tr>
+    </thead>
+    {% for planet in planets %}
+    <tbody>
+        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:planets_update' planet.pk %}" {% endif %}>
+            <td>{{ planet.name }}</td>
+            <td>{{ planet.name_kana|default:'-' }}</td>
+            <td>{{ planet.created_at }}</td>
+            <td>{{ planet.updated_at }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock content %}
+{% block script %}
+    <script src="{% static 'js/pikmins/index.js' %}"></script>
+{% endblock script %}
