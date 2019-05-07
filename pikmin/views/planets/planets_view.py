@@ -5,7 +5,10 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from pikmin.forms.planets.planet_forms import (PlanetSearchForm, PlanetForm)
+from pikmin.forms.planets.planet_forms import (
+    PlanetSearchForm,
+    PlanetForm,
+    onion_formset)
 from pikmin.models.planets.planet import Planet
 
 
@@ -18,6 +21,8 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['onion_formset'] = onion_formset
 
         if 'form_data' in self.request.session:
             form_data = self.request.session['form_data']
