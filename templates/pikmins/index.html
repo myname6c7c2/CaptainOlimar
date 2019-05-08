@@ -21,7 +21,7 @@
     </div>
     {% if user.is_authenticated %}
     <div class="col-sm-2 ml-auto">
-        <a class="btn btn-primary" role="button" href="{% url 'pikmins:create' %}">新規登録</a>
+        <a class="btn btn-primary" role="button" href="{% url 'pikmins:pikmins_create' %}">新規登録</a>
         <button type="button" class="btn btn-danger">削除</button>
     </div>
     {% endif %}
@@ -39,7 +39,7 @@
     </thead>
     {% for pikmin in pikmins %}
     <tbody>
-        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:update' pikmin.pk %}" {% endif %}>
+        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:pikmins_update' pikmin.pk %}" {% endif %}>
             <td>{{ pikmin.last_name }} {{ pikmin.first_name }}</td>
             <td>{{ pikmin.last_name_kana|default:'-' }} {{ pikmin.first_name_kana|default:'-' }}</td>
             <td>{{ pikmin.calculate_age }} 歳</td>

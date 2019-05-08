@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from pikmin.forms.pikmins.pikmin_forms import (PikminSearchForm, PikminForm)
-from pikmin.models.pikmins.pikmin import Pikmin
+from apps.pikmins.forms.pikmin_forms import (PikminSearchForm, PikminForm)
+from apps.pikmins.models.pikmin import Pikmin
 
 
 class IndexView(ListView):

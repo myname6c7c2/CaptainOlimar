@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{% url 'pikmins:index' %}">ピクミン一覧</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'pikmins:pikmins_index' %}">ピクミン一覧</a></li>
     <li class="breadcrumb-item active">ピクミン登録</li>
 {% endblock breadcrumb %}
 
@@ -11,7 +11,7 @@
     <table class="table table-borderless w-50">
         {{ form.as_table }}
     </table>
-    <a class="btn btn-secondary" href="{% url 'pikmins:index' %}" role="button">戻る</a>
+    <a class="btn btn-secondary" href="{% url 'pikmins:pikmins_index' %}" role="button">戻る</a>
     <button class="btn btn-primary" type="submit">登録</a>
 </form>
 {% endblock content %}

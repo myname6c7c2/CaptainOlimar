@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Q
 from django.utils import timezone
 
-from pikmin.lib.choices import SEX
+from apps.lib.choices import SEX
 
 
 class Pikmin(models.Model):

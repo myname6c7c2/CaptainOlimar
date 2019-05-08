@@ -1,7 +1,7 @@
 from django import forms
 
-from pikmin.models.pikmins.pikmin import Pikmin
-from pikmin.lib.choices import SEX
+from apps.pikmins.models.pikmin import Pikmin
+from apps.lib.choices import SEX
 
 
 class PikminSearchForm(forms.Form):
