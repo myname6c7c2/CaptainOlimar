@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'pikmin',
+    'apps.pikmins',
+    'apps.planets',
 ]
 
 MIDDLEWARE = [

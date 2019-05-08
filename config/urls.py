@@ -10,7 +10,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pikmin.urls')),
+    path('', include('apps.pikmins.urls')),
+    path('planets/', include('apps.planets.urls')),
 ]
 
 if settings.DEBUG :

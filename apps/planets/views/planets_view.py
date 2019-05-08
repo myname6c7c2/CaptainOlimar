@@ -5,11 +5,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from pikmin.forms.planets.planet_forms import (
+from apps.planets.forms.planet_forms import (
     PlanetSearchForm,
     PlanetForm,
     onion_formset)
-from pikmin.models.planets.planet import Planet
+from apps.planets.models.planet import Planet
 
 
 class IndexView(ListView):
@@ -37,14 +37,14 @@ class PlanetCreateView(LoginRequiredMixin, CreateView):
     model = Planet
     form_class = PlanetForm
     template_name = 'planets/edit.html'
-    success_url = reverse_lazy('planets:planet_index')
+    success_url = reverse_lazy('planets:planets_index')
 
 
 class PlanetUpdateView(LoginRequiredMixin, UpdateView):
     model = Planet
     form_class = PlanetForm
     template_name = 'planets/edit.html'
-    success_url = reverse_lazy('planets:planet_index')
+    success_url = reverse_lazy('planets:planets_index')
 
 
 index = IndexView.as_view()

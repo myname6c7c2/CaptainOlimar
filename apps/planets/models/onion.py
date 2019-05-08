@@ -1,6 +1,6 @@
 from django.db import models
 
-from pikmin.models.planets.planet import Planet
+from apps.planets.models.planet import Planet
 
 
 class Onion(models.Model):

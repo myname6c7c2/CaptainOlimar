@@ -1,7 +1,7 @@
 from django import forms
 
-from pikmin.models.planets.planet import Planet
-from pikmin.models.planets.onion import Onion
+from apps.planets.models.planet import Planet
+from apps.planets.models.onion import Onion
 
 
 class PlanetSearchForm(forms.Form):

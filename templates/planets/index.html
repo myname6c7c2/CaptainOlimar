@@ -21,7 +21,7 @@
     </div>
     {% if user.is_authenticated %}
     <div class="col-sm-2 ml-auto">
-        <a class="btn btn-primary" role="button" href="{% url 'pikmins:planets_create' %}">新規登録</a>
+        <a class="btn btn-primary" role="button" href="{% url 'planets:planets_create' %}">新規登録</a>
         <button type="button" class="btn btn-danger">削除</button>
     </div>
     {% endif %}
@@ -37,7 +37,7 @@
     </thead>
     {% for planet in planets %}
     <tbody>
-        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:planets_update' planet.pk %}" {% endif %}>
+        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'planets:planets_update' planet.pk %}" {% endif %}>
             <td>{{ planet.name }}</td>
             <td>{{ planet.name_kana|default:'-' }}</td>
             <td>{{ planet.created_at }}</td>
