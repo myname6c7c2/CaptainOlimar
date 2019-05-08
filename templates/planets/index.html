@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}ピクミン一覧{% endblock title%}
+{% block title %}惑星一覧{% endblock title%}
 
 {% block header %}
     <link rel="stylesheet" href="{% static 'captain_olimar.css' %}">
 {% endblock header %}
 
 {% block breadcrumb %}
-<li class="breadcrumb-item active">ピクミン一覧</li>
+<li class="breadcrumb-item active">惑星一覧</li>
 {% endblock breadcrumb %}
 
 {% block content %}
@@ -21,7 +21,7 @@
     </div>
     {% if user.is_authenticated %}
     <div class="col-sm-2 ml-auto">
-        <a class="btn btn-primary" role="button" href="{% url 'pikmins:create' %}">新規登録</a>
+        <a class="btn btn-primary" role="button" href="{% url 'pikmins:planets_create' %}">新規登録</a>
         <button type="button" class="btn btn-danger">削除</button>
     </div>
     {% endif %}
@@ -29,23 +29,19 @@
 <table class="table table-borderd table-hover table-sm">
     <thead class="thead-dark">
         <tr>
-            <th>氏名</th>
-            <th>氏名カナ</th>
-            <th>年齢</th>
-            <th>性別</th>
+            <th>惑星名</th>
+            <th>惑星名カナ</th>
             <th>作成日時</th>
             <th>更新日時</th>
         </tr>
     </thead>
-    {% for pikmin in pikmins %}
+    {% for planet in planets %}
     <tbody>
-        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:update' pikmin.pk %}" {% endif %}>
-            <td>{{ pikmin.last_name }} {{ pikmin.first_name }}</td>
-            <td>{{ pikmin.last_name_kana|default:'-' }} {{ pikmin.first_name_kana|default:'-' }}</td>
-            <td>{{ pikmin.calculate_age }} 歳</td>
-            <td>{{ pikmin.get_sex_display }}</td>
-            <td>{{ pikmin.created_at }}</td>
-            <td>{{ pikmin.updated_at }}</td>
+        <tr {% if user.is_authenticated %} class="clickable-row" data-href="{% url 'pikmins:planets_update' planet.pk %}" {% endif %}>
+            <td>{{ planet.name }}</td>
+            <td>{{ planet.name_kana|default:'-' }}</td>
+            <td>{{ planet.created_at }}</td>
+            <td>{{ planet.updated_at }}</td>
         </tr>
     </tbody>
     {% endfor %}
