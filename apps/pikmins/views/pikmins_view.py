@@ -22,7 +22,7 @@ class IndexView(ListView):
         if search_form.is_valid():
             request.session['form_data'] = request.POST
 
-            return redirect('pikmins:index')
+            return redirect('pikmins:pikmins_index')
 
         context = {'search_form': search_form}
 

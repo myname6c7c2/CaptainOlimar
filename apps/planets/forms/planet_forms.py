@@ -31,7 +31,7 @@ class PlanetForm(forms.ModelForm):
         model = Planet
         fields = (
             'name',
-            'name_kana',
+            'name_kana'
         )
 
     def __init__(self, *args, **kwargs):
@@ -41,7 +41,7 @@ class PlanetForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
 
 
-class PlanetForm(forms.ModelForm):
+class OnionForm(forms.ModelForm):
 
     class Meta:
         model = Onion
@@ -52,16 +52,16 @@ class PlanetForm(forms.ModelForm):
         )
 
     def __init__(self, *args, **kwargs):
-        super(PlanetForm, self).__init__(*args, **kwargs)
+        super(OnionForm, self).__init__(*args, **kwargs)
 
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
 
-onion_formset = forms.inlineformset_factory(
+OnionFormset = forms.inlineformset_factory(
     Planet,
     Onion,
-    PlanetForm,
+    OnionForm,
     extra=1,
     can_delete=True,
 )
