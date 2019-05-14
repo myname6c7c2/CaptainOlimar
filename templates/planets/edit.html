@@ -11,6 +11,9 @@
     <table class="table table-borderless w-50">
         {{ form.as_table }}
     </table>
+    <table class="table table-borderless w-50">
+        {{ onion_formset.as_table }}
+    </table>
     <a class="btn btn-secondary" href="{% url 'planets:planets_index' %}" role="button">戻る</a>
     <button class="btn btn-primary" type="submit">登録</button>
 </form>

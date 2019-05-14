@@ -6,8 +6,11 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from apps.planets.forms.planet_forms import (OnionFormset, PlanetForm,
-                                             PlanetSearchForm)
+from apps.planets.forms.planet_forms import (
+    OnionFormset,
+    PlanetForm,
+    PlanetSearchForm
+)
 from apps.planets.models.planet import Planet
 
 
@@ -17,6 +20,18 @@ class IndexView(ListView):
     context_object_name = 'planets'
     template_name = 'planets/index.html'
     paginate_by = 5
+
+    def post(self, request, *args, **kwargs):
+        search_form = PlanetSearchForm(request.POST)
+
+        if search_form.is_valid():
+            request.session['form_data'] = request.POST
+
+            return redirect('planets:planets_index')
+
+        context = {'search_form': search_form}
+
+        return render(request, self.template_name, context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -38,9 +53,9 @@ class PlanetCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['onion_formset'] = OnionFormset()
 
         return context
-
 
 
 class PlanetUpdateView(LoginRequiredMixin, UpdateView):
