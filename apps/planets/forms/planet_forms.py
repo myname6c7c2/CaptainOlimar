@@ -28,22 +28,6 @@ class PlanetSearchForm(forms.Form):
 class PlanetForm(forms.ModelForm):
 
     class Meta:
-        model = Planet
-        fields = (
-            'name',
-            'name_kana',
-        )
-
-    def __init__(self, *args, **kwargs):
-        super(PlanetForm, self).__init__(*args, **kwargs)
-
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
-
-
-class PlanetForm(forms.ModelForm):
-
-    class Meta:
         model = Onion
         fields = (
             'name',
@@ -58,7 +42,7 @@ class PlanetForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
 
 
-onion_formset = forms.inlineformset_factory(
+OnionFormset = forms.inlineformset_factory(
     Planet,
     Onion,
     PlanetForm,

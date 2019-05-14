@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'planets:planets_index' %}">惑星一覧</a></li>
+    <li class="breadcrumb-item active">惑星登録</li>
+{% endblock breadcrumb %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <table class="table table-borderless w-50">
+        {{ form.as_table }}
+    </table>
+    <a class="btn btn-secondary" href="{% url 'planets:planets_index' %}" role="button">戻る</a>
+    <button class="btn btn-primary" type="submit">登録</button>
+</form>
+{% endblock content %}

@@ -1,14 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.forms.formsets import formset_factory
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 
-from apps.planets.forms.planet_forms import (
-    PlanetSearchForm,
-    PlanetForm,
-    onion_formset)
+from apps.planets.forms.planet_forms import (OnionFormset, PlanetForm,
+                                             PlanetSearchForm)
 from apps.planets.models.planet import Planet
 
 
@@ -21,8 +20,6 @@ class IndexView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        context['onion_formset'] = onion_formset
 
         if 'form_data' in self.request.session:
             form_data = self.request.session['form_data']
@@ -38,6 +35,12 @@ class PlanetCreateView(LoginRequiredMixin, CreateView):
     form_class = PlanetForm
     template_name = 'planets/edit.html'
     success_url = reverse_lazy('planets:planets_index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
 
 
 class PlanetUpdateView(LoginRequiredMixin, UpdateView):
