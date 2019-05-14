@@ -67,14 +67,14 @@ class PikminCreateView(LoginRequiredMixin, CreateView):
     model = Pikmin
     form_class = PikminForm
     template_name = 'pikmins/edit.html'
-    success_url = reverse_lazy('pikmins:index')
+    success_url = reverse_lazy('pikmins:pikmins_index')
 
 
 class PikminUpdateView(LoginRequiredMixin, UpdateView):
     model = Pikmin
     form_class = PikminForm
     template_name = 'pikmins/edit.html'
-    success_url = reverse_lazy('pikmins:index')
+    success_url = reverse_lazy('pikmins:pikmins_index')
 
 
 index = IndexView.as_view()
